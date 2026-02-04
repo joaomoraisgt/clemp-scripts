@@ -1,0 +1,20 @@
+{
+  "docker": {
+    "version": "latest",
+    "download_url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
+  },
+  "nodejs": {
+    "version": "20.11.0",
+    "download_url": "https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi"
+  },
+  "rust": {
+    "version": "stable",
+    "download_url": "https://win.rustup.rs/x86_64"
+  },
+  "downloads": {
+    "temp_dir": "$env:TEMP\\clemp_install",
+    "docker_installer": "DockerDesktopInstaller.exe",
+    "nodejs_msi": "node-v20.11.0-x64.msi",
+    "rustup_init": "rustup-init.exe"
+  }
+}
