@@ -178,13 +178,17 @@ function Get-DiskSpaceInfo {
     #>
     try {
         $drive = $env:SystemDrive
-        $driveInfo = Get-PSDrive $drive -ErrorAction Stop
+        $disk = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID='$drive'" -ErrorAction Stop
+
+        $freeGB = [math]::Round($disk.FreeSpace / 1GB, 2)
+        $totalGB = [math]::Round($disk.Size / 1GB, 2)
+        $usedGB = [math]::Round(($disk.Size - $disk.FreeSpace) / 1GB, 2)
 
         return @{
             Drive = $drive
-            FreeGB = [math]::Round($driveInfo.Free / 1GB, 2)
-            UsedGB = [math]::Round($driveInfo.Used / 1GB, 2)
-            TotalGB = [math]::Round($driveInfo.Sum / 1GB, 2)
+            FreeGB = $freeGB
+            UsedGB = $usedGB
+            TotalGB = $totalGB
         }
     }
     catch {
